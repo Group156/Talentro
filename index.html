@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talentro — EU AI Expert Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#0d0d0d;--paper:#fafaf8;--mid:#6b6b6b;--line:#e2e2de;--blue:#1a56db;--blue-light:#eff4ff}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Geist',sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;width:100%;padding:0 2.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,250,248,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:100}
+.logo{font-family:'Instrument Serif',serif;font-size:1.35rem;color:var(--ink)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:0.82rem;color:var(--mid);text-decoration:none;transition:color 0.15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-btn{background:var(--ink);color:var(--paper);font-family:'Geist',sans-serif;font-size:0.82rem;padding:0.5rem 1.25rem;border:none;border-radius:6px;cursor:pointer;text-decoration:none;transition:opacity 0.15s}
+.nav-btn:hover{opacity:0.8}
+.hero{padding:130px 2.5rem 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;min-height:100vh}
+.eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);background:var(--blue-light);padding:0.3rem 0.75rem;border-radius:100px;margin-bottom:1.75rem}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(2.6rem,4.5vw,4rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.25rem}
+h1 em{font-style:italic;color:var(--blue)}
+.hero-desc{font-size:1rem;color:var(--mid);line-height:1.75;max-width:420px;margin-bottom:2.25rem}
+.hero-actions{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap}
+.btn-primary{background:var(--ink);color:var(--paper);font-family:'Geist',sans-serif;font-size:0.88rem;font-weight:500;padding:0.75rem 1.5rem;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:opacity 0.15s;display:inline-block}
+.btn-primary:hover{opacity:0.8}
+.btn-secondary{font-size:0.88rem;color:var(--mid);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;transition:color 0.15s}
+.btn-secondary:hover{color:var(--ink)}
+.hero-trust{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);display:flex;gap:2rem}
+.trust-num{font-family:'Instrument Serif',serif;font-size:1.8rem;color:var(--ink);line-height:1}
+.trust-label{font-size:0.75rem;color:var(--mid);margin-top:0.25rem}
+.hero-right{display:flex;flex-direction:column;gap:1rem}
+.info-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.25rem 1.5rem}
+.card-tag{font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:0.75rem}
+.card-title{font-family:'Instrument Serif',serif;font-size:1.15rem;color:var(--ink);margin-bottom:0.5rem}
+.card-body{font-size:0.82rem;color:var(--mid);line-height:1.7}
+.pill-row{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.75rem}
+.pill{font-size:0.72rem;font-weight:500;padding:0.25rem 0.65rem;border-radius:100px;background:var(--blue-light);color:var(--blue);border:1px solid #c7d7f9}
+.divider{border:none;border-top:1px solid var(--line);margin:0}
+.section{padding:5rem 2.5rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);margin-bottom:0.75rem}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1rem}
+h2 em{font-style:italic}
+.section-sub{font-size:0.95rem;color:var(--mid);max-width:480px;line-height:1.8;margin-bottom:3rem}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.step{background:var(--paper);padding:1.75rem}
+.step-num{font-family:'Instrument Serif',serif;font-size:2rem;color:var(--line);line-height:1;margin-bottom:1rem}
+.step h3{font-size:0.9rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem}
+.step p{font-size:0.78rem;color:var(--mid);line-height:1.7}
+.serve-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.serve-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:2rem}
+.serve-card h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:var(--ink);margin-bottom:0.75rem}
+.serve-card p{font-size:0.82rem;color:var(--mid);line-height:1.75;margin-bottom:1.25rem}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.checklist li{font-size:0.82rem;color:var(--ink);display:flex;align-items:flex-start;gap:0.6rem}
+.check{width:16px;height:16px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.check::after{content:'';display:block;width:6px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(0.5px,-0.5px)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.5rem}
+.why-icon{width:36px;height:36px;border-radius:8px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1rem}
+.why-card h3{font-size:0.9rem;font-weight:500;color:var(--ink);margin-bottom:0.5rem}
+.why-card p{font-size:0.78rem;color:var(--mid);line-height:1.7}
+.forms-section{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.forms-inner{max-width:1100px;margin:0 auto;padding:5rem 2.5rem}
+.forms-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:3rem}
+.form-block h3{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--ink);margin-bottom:0.5rem}
+.form-block p{font-size:0.82rem;color:var(--mid);line-height:1.7;margin-bottom:1.75rem}
+.form-row{margin-bottom:1rem}
+label{display:block;font-size:0.72rem;font-weight:500;color:var(--mid);margin-bottom:0.4rem;letter-spacing:0.04em;text-transform:uppercase}
+input,select,textarea{width:100%;background:var(--paper);border:1px solid var(--line);color:var(--ink);padding:0.65rem 0.9rem;font-family:'Geist',sans-serif;font-size:0.85rem;border-radius:8px;outline:none;transition:border-color 0.15s;appearance:none;-webkit-appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--ink)}
+textarea{resize:vertical;min-height:90px}
+.submit-btn{width:100%;background:var(--ink);color:var(--paper);font-family:'Geist',sans-serif;font-size:0.85rem;font-weight:500;padding:0.8rem;border:none;border-radius:8px;cursor:pointer;margin-top:0.5rem;transition:opacity 0.15s}
+.submit-btn:hover{opacity:0.8}
+.form-line{background:var(--line);width:1px}
+.success{display:none;background:var(--blue-light);border:1px solid #c7d7f9;border-radius:8px;padding:0.9rem 1rem;font-size:0.82rem;color:var(--blue);margin-top:0.75rem;text-align:center}
+footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);max-width:1100px;margin:0 auto}
+.footer-logo{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--ink)}
+footer p{font-size:0.75rem;color:var(--mid)}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left>*{animation:up 0.6s ease both}
+.eyebrow{animation-delay:0.05s}h1{animation-delay:0.12s}.hero-desc{animation-delay:0.18s}.hero-actions{animation-delay:0.22s}.hero-trust{animation-delay:0.28s}
+.hero-right{animation:up 0.6s 0.2s ease both}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:100px}
+  .hero-right{display:none}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .serve-grid,.why-grid{grid-template-columns:1fr}
+  .forms-grid{grid-template-columns:1fr}
+  .form-line{display:none}
+  nav{padding:0 1.25rem}.nav-links{display:none}
+  .section{padding:3rem 1.25rem}
+  footer{flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><svg height="32" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="20" width="72" height="72" rx="14" fill="#3730a3"/><text x="36" y="68" text-anchor="middle" font-family="Georgia,serif" font-size="40" font-weight="700" fill="white">T</text><text x="88" y="76" font-family="Georgia,serif" font-size="52" font-weight="400" fill="#0d0d0d" letter-spacing="-1">Talentro</text></svg></div>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#serve">Who we serve</a></li>
+    <li><a href="#join">Get started</a></li>
+  </ul>
+  <a href="#join" class="nav-btn">Partner with us</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow"><span class="eyebrow-dot"></span>EU AI Expert Network</div>
+    <h1>The experts your<br><em>AI models</em><br>actually need.</h1>
+    <p class="hero-desc">Talentro connects EU AI labs with verified domain specialists for model training and evaluation. Engineers, scientists, doctors, lawyers — vetted, matched, and ready in 48 hours.</p>
+    <div class="hero-actions">
+      <a href="#join" class="btn-primary">Partner with us</a>
+      <a href="#join" class="btn-secondary">Join as an expert →</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-num">48h</div><div class="trust-label">Expert matching</div></div>
+      <div class="trust-item"><div class="trust-num">20+</div><div class="trust-label">EU languages</div></div>
+      <div class="trust-item"><div class="trust-num">100%</div><div class="trust-label">GDPR compliant</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="info-card">
+      <div class="card-tag">For AI Labs</div>
+      <div class="card-title">Need domain experts for model training?</div>
+      <p class="card-body">We source and vet specialists across 15+ fields — fully compliant with EU data law.</p>
+      <div class="pill-row">
+        <span class="pill">Engineering</span><span class="pill">Medicine</span><span class="pill">Law</span><span class="pill">Physics</span><span class="pill">Finance</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="card-tag">For Domain Experts</div>
+      <div class="card-title">Turn your expertise into income.</div>
+      <p class="card-body">AI labs need specialists like you. Work remotely on intellectually meaningful tasks at €30–100+/hr.</p>
+      <div class="pill-row">
+        <span class="pill">Remote</span><span class="pill">Flexible hours</span><span class="pill">Fast payments</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="card-tag">Why EU-native matters</div>
+      <div class="card-title">Built for European compliance from day one.</div>
+      <p class="card-body">GDPR, data residency, EU AI Act — we handle it all so you don't have to.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="how">
+  <div class="section-label">Process</div>
+  <h2>Simple from <em>day one</em></h2>
+  <p class="section-sub">We handle sourcing, vetting, and contracts. You get the right expert on your project within 48 hours.</p>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num">01</div><h3>Tell us what you need</h3><p>Share your domain, language, volume, and timeline. Takes five minutes.</p></div>
+    <div class="step"><div class="step-num">02</div><h3>We match and vet</h3><p>We find and verify the right specialists. Credentials checked, background confirmed.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Experts get to work</h3><p>Matched experts complete tasks through our platform. You review. We handle payments.</p></div>
+    <div class="step"><div class="step-num">04</div><h3>Scale as needed</h3><p>Five experts or five hundred — we scale your pool with no long-term commitment.</p></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="serve">
+  <div class="section-label">Who we serve</div>
+  <h2>Built for both sides<br>of the <em>equation</em></h2>
+  <p class="section-sub">Whether you need experts or you are one — Talentro connects the right people to the right projects.</p>
+  <div class="serve-grid">
+    <div class="serve-card">
+      <h3>For AI Labs & Companies</h3>
+      <p>Stop spending weeks sourcing and vetting specialists. Get a pipeline of verified EU domain experts ready to contribute to your training data, RLHF pipelines, and evaluations.</p>
+      <ul class="checklist">
+        <li><span class="check"></span>Verified credentials across 15+ domains</li>
+        <li><span class="check"></span>Multilingual — 20+ EU languages covered</li>
+        <li><span class="check"></span>Full GDPR compliance and EU data residency</li>
+        <li><span class="check"></span>EU AI Act ready workflows</li>
+        <li><span class="check"></span>Hourly or project-based pricing</li>
+        <li><span class="check"></span>Dedicated account manager</li>
+      </ul>
+    </div>
+    <div class="serve-card">
+      <h3>For Domain Experts</h3>
+      <p>Your specialized knowledge is exactly what AI labs need. Work on intellectually stimulating problems from anywhere in Europe, on your own schedule.</p>
+      <ul class="checklist">
+        <li><span class="check"></span>Competitive hourly rates — €30 to €100+</li>
+        <li><span class="check"></span>Work remotely, set your own hours</li>
+        <li><span class="check"></span>Engineers, scientists, doctors, lawyers welcome</li>
+        <li><span class="check"></span>No prior AI experience required</li>
+        <li><span class="check"></span>Start within a week of approval</li>
+        <li><span class="check"></span>Reliable, on-time payments</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section">
+  <div class="section-label">Why Talentro</div>
+  <h2>The <em>EU advantage</em></h2>
+  <p class="section-sub">Working with a US-based partner for European AI development creates legal and regulatory risk. We eliminate it entirely.</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🛡️</div><h3>GDPR native</h3><p>Built from day one for European data protection. No retrofitting, no grey areas. Your data stays in Europe.</p></div>
+    <div class="why-card"><div class="why-icon">🌍</div><h3>Multilingual by default</h3><p>Native speakers across 20+ European languages. Train models that understand how Europeans communicate.</p></div>
+    <div class="why-card"><div class="why-icon">⚖️</div><h3>EU AI Act ready</h3><p>As EU AI Act requirements come into force, a compliant EU partner becomes essential. We're ahead of the curve.</p></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="forms-section" id="join">
+  <div class="forms-inner">
+    <div class="section-label">Get started</div>
+    <h2>Join the <em>network</em></h2>
+    <p class="section-sub">Whether you're an AI lab or a domain expert — start here.</p>
+    <div class="forms-grid">
+      <div class="form-block">
+        <h3>For AI Labs & Companies</h3>
+        <p>Tell us about your data needs and we'll be in touch within 24 hours.</p>
+        <form id="clientForm">
+          <div class="form-row"><label>Company name</label><input type="text" placeholder="Mistral AI" required></div>
+          <div class="form-row"><label>Your name</label><input type="text" placeholder="Anna Müller" required></div>
+          <div class="form-row"><label>Work email</label><input type="email" placeholder="anna@company.ai" required></div>
+          <div class="form-row"><label>Domain expertise needed</label>
+            <select><option value="">Select a domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
+          </div>
+          <div class="form-row"><label>Tell us about your project</label><textarea placeholder="What kind of tasks, how many experts, timeline..."></textarea></div>
+          <button type="submit" class="submit-btn">Request a conversation</button>
+          <div class="success" id="clientSuccess">✓ Received. We'll be in touch within 24 hours.</div>
+        </form>
+      </div>
+      <div class="form-line"></div>
+      <div class="form-block">
+        <h3>For Domain Experts</h3>
+        <p>Apply to join our network. We'll reach out when a matching project is available.</p>
+        <form id="expertForm">
+          <div class="form-row"><label>Full name</label><input type="text" placeholder="Lars Jensen" required></div>
+          <div class="form-row"><label>Email</label><input type="email" placeholder="lars@email.com" required></div>
+          <div class="form-row"><label>Country</label><input type="text" placeholder="Denmark"></div>
+          <div class="form-row"><label>Your field</label>
+            <select><option value="">Select your domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
+          </div>
+          <div class="form-row"><label>Highest qualification</label>
+            <select><option value="">Select level</option><option>Bachelor's degree</option><option>Master's degree</option><option>PhD</option><option>Professional certification</option></select>
+          </div>
+          <div class="form-row"><label>Expected hourly rate (€)</label><input type="text" placeholder="e.g. 45"></div>
+          <button type="submit" class="submit-btn">Apply to join</button>
+          <div class="success" id="expertSuccess">✓ Application received. We'll be in touch soon.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><svg height="24" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="20" width="72" height="72" rx="14" fill="#3730a3"/><text x="36" y="68" text-anchor="middle" font-family="Georgia,serif" font-size="40" font-weight="700" fill="white">T</text><text x="88" y="76" font-family="Georgia,serif" font-size="52" font-weight="400" fill="#0d0d0d" letter-spacing="-1">Talentro</text></svg></div>
+  <p>© 2026 Talentro · EU-based · GDPR compliant</p>
+  <p>talentro.tech</p>
+</footer>
+
+<script>
+document.getElementById('clientForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('clientSuccess').style.display='block';this.reset()});
+document.getElementById('expertForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('expertSuccess').style.display='block';this.reset()});
+</script>
+</body>
+</html>
