@@ -58,6 +58,21 @@ h2 em{font-style:italic}
 .checklist li{font-size:0.82rem;color:var(--ink);display:flex;align-items:flex-start;gap:0.6rem}
 .check{width:16px;height:16px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
 .check::after{content:'';display:block;width:6px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translate(0.5px,-0.5px)}
+.about-wrap{display:grid;grid-template-columns:0.82fr 1.18fr;gap:1rem;align-items:stretch}
+.founder-card{background:var(--ink);color:var(--paper);border-radius:14px;padding:2rem;display:flex;flex-direction:column;justify-content:space-between;min-height:360px}
+.founder-mark{font-family:'Instrument Serif',serif;font-size:5rem;line-height:0.9;color:#769dff;letter-spacing:-0.05em}
+.founder-card .section-label{color:#9ba4b5}
+.founder-name{font-family:'Instrument Serif',serif;font-size:2rem;font-weight:400;line-height:1.05;margin:1rem 0 0.6rem}
+.founder-role{font-size:0.82rem;color:#bdc4cf;line-height:1.65}
+.founder-facts{display:flex;flex-wrap:wrap;gap:0.45rem;margin-top:1.5rem}
+.founder-fact{border:1px solid #343943;border-radius:100px;padding:0.32rem 0.7rem;font-size:0.72rem;color:#e4e7ec}
+.about-copy{background:#fff;border:1px solid var(--line);border-radius:14px;padding:2.25rem}
+.about-copy h2{max-width:620px}
+.about-copy>p{font-size:0.95rem;color:var(--mid);line-height:1.85;margin-bottom:1.2rem;max-width:650px}
+.about-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-top:2rem}
+.about-principle{border-top:1px solid var(--line);padding-top:0.9rem}
+.about-principle strong{display:block;font-size:0.78rem;font-weight:500;margin-bottom:0.3rem}
+.about-principle span{display:block;font-size:0.75rem;color:var(--mid);line-height:1.55}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .why-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.5rem}
 .why-icon{width:36px;height:36px;border-radius:8px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1rem}
@@ -76,7 +91,12 @@ textarea{resize:vertical;min-height:90px}
 .submit-btn{width:100%;background:var(--ink);color:var(--paper);font-family:'Geist',sans-serif;font-size:0.85rem;font-weight:500;padding:0.8rem;border:none;border-radius:8px;cursor:pointer;margin-top:0.5rem;transition:opacity 0.15s}
 .submit-btn:hover{opacity:0.8}
 .form-line{background:var(--line);width:1px}
-.success{display:none;background:var(--blue-light);border:1px solid #c7d7f9;border-radius:8px;padding:0.9rem 1rem;font-size:0.82rem;color:var(--blue);margin-top:0.75rem;text-align:center}
+.form-message{display:none;border-radius:8px;padding:0.9rem 1rem;font-size:0.82rem;margin-top:0.75rem;text-align:center}
+.form-message.success{background:var(--blue-light);border:1px solid #c7d7f9;color:var(--blue)}
+.form-message.error{background:#fff1f1;border:1px solid #f0b8b8;color:#9b1c1c}
+.submit-btn:disabled{opacity:0.55;cursor:wait}
+.form-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.privacy-note{font-size:0.72rem!important;color:var(--mid);line-height:1.55;margin:1rem 0 0!important}
 footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);max-width:1100px;margin:0 auto}
 .footer-logo{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--ink)}
 footer p{font-size:0.75rem;color:var(--mid)}
@@ -88,7 +108,9 @@ footer p{font-size:0.75rem;color:var(--mid)}
   .hero{grid-template-columns:1fr;min-height:auto;padding-top:100px}
   .hero-right{display:none}
   .steps-grid{grid-template-columns:1fr 1fr}
-  .serve-grid,.why-grid{grid-template-columns:1fr}
+  .serve-grid,.why-grid,.about-wrap{grid-template-columns:1fr}
+  .about-principles{grid-template-columns:1fr}
+  .founder-card{min-height:300px}
   .forms-grid{grid-template-columns:1fr}
   .form-line{display:none}
   nav{padding:0 1.25rem}.nav-links{display:none}
@@ -104,6 +126,7 @@ footer p{font-size:0.75rem;color:var(--mid)}
   <ul class="nav-links">
     <li><a href="#how">How it works</a></li>
     <li><a href="#serve">Who we serve</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#join">Get started</a></li>
   </ul>
   <a href="#join" class="nav-btn">Partner with us</a>
@@ -199,6 +222,39 @@ footer p{font-size:0.75rem;color:var(--mid)}
 
 <hr class="divider">
 
+<div class="section" id="about">
+  <div class="about-wrap">
+    <aside class="founder-card" aria-label="Founder profile">
+      <div>
+        <div class="section-label">Founder</div>
+        <div class="founder-mark" aria-hidden="true">KA</div>
+      </div>
+      <div>
+        <h2 class="founder-name">Krubel Asrat</h2>
+        <p class="founder-role">Danish engineering founder building the operating layer for European expert work.</p>
+        <div class="founder-facts">
+          <span class="founder-fact">DTU</span>
+          <span class="founder-fact">Dartmouth</span>
+          <span class="founder-fact">Six languages</span>
+        </div>
+      </div>
+    </aside>
+    <div class="about-copy">
+      <div class="section-label">Why this company</div>
+      <h2>Europe has the expertise.<br>The delivery layer is <em>fragmented.</em></h2>
+      <p>Krubel studied engineering at DTU and Dartmouth and works across six languages. Moving between European technical, academic and cultural environments made one problem clear: specialist knowledge exists in depth, but accessing it reliably across languages, credentials, institutions and borders is still unnecessarily difficult.</p>
+      <p>Talentro turns that fragmentation into a managed system. Each engagement starts with a defined output, brings in precisely qualified specialists, controls the work through delivery and leaves the customer with reviewable evidence.</p>
+      <div class="about-principles" aria-label="Talentro operating principles">
+        <div class="about-principle"><strong>Define the output</strong><span>Scope the work before assembling the panel.</span></div>
+        <div class="about-principle"><strong>Verify the inputs</strong><span>Match credentials, language and real project context.</span></div>
+        <div class="about-principle"><strong>Preserve the evidence</strong><span>Make quality and delivery reviewable at every step.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
 <div class="section">
   <div class="section-label">Why Talentro</div>
   <h2>The <em>EU advantage</em></h2>
@@ -220,39 +276,45 @@ footer p{font-size:0.75rem;color:var(--mid)}
     <div class="forms-grid">
       <div class="form-block">
         <h3>For AI Labs & Companies</h3>
-        <p>Tell us about your data needs and we'll be in touch within 24 hours.</p>
-        <form id="clientForm">
-          <div class="form-row"><label>Company name</label><input type="text" placeholder="Mistral AI" required></div>
-          <div class="form-row"><label>Your name</label><input type="text" placeholder="Anna Müller" required></div>
-          <div class="form-row"><label>Work email</label><input type="email" placeholder="anna@company.ai" required></div>
-          <div class="form-row"><label>Domain expertise needed</label>
-            <select><option value="">Select a domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
+        <p>Tell us what outcome you need, and we will respond within one business day.</p>
+        <form id="clientForm" data-inquiry-type="client">
+          <div class="form-trap" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="form-row"><label for="clientCompany">Company name</label><input id="clientCompany" name="company_name" type="text" placeholder="Mistral AI" autocomplete="organization" maxlength="200" required></div>
+          <div class="form-row"><label for="clientName">Your name</label><input id="clientName" name="full_name" type="text" placeholder="Anna Müller" autocomplete="name" maxlength="160" required></div>
+          <div class="form-row"><label for="clientEmail">Work email</label><input id="clientEmail" name="email" type="email" placeholder="anna@company.ai" autocomplete="email" maxlength="254" required></div>
+          <div class="form-row"><label for="clientDomain">Domain expertise needed</label>
+            <select id="clientDomain" name="domain_needed" required><option value="">Select a domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
           </div>
-          <div class="form-row"><label>Tell us about your project</label><textarea placeholder="What kind of tasks, how many experts, timeline..."></textarea></div>
+          <div class="form-row"><label for="clientDetails">Tell us about your project</label><textarea id="clientDetails" name="project_details" placeholder="The outcome, specialist profile, volume and timeline..." maxlength="5000" required></textarea></div>
           <button type="submit" class="submit-btn">Request a conversation</button>
-          <div class="success" id="clientSuccess">✓ Received. We'll be in touch within 24 hours.</div>
+          <div class="form-message success" role="status" aria-live="polite">Received. We will contact you within one business day.</div>
+          <div class="form-message error" role="alert" aria-live="assertive"></div>
+          <p class="privacy-note">We use these details only to assess and respond to your request.</p>
         </form>
       </div>
       <div class="form-line"></div>
       <div class="form-block">
         <h3>For Domain Experts</h3>
-        <p>Apply to join our network. We'll reach out when a matching project is available.</p>
-        <form id="expertForm">
-          <div class="form-row"><label>Full name</label><input type="text" placeholder="Lars Jensen" required></div>
-          <div class="form-row"><label>Email</label><input type="email" placeholder="lars@email.com" required></div>
-          <div class="form-row"><label>Country</label><input type="text" placeholder="Denmark"></div>
-          <div class="form-row"><label>Your field</label>
-            <select><option value="">Select your domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
+        <p>Apply to join the network. We will contact you when your expertise matches live work.</p>
+        <form id="expertForm" data-inquiry-type="expert">
+          <div class="form-trap" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="form-row"><label for="expertName">Full name</label><input id="expertName" name="full_name" type="text" placeholder="Lars Jensen" autocomplete="name" maxlength="160" required></div>
+          <div class="form-row"><label for="expertEmail">Email</label><input id="expertEmail" name="email" type="email" placeholder="lars@email.com" autocomplete="email" maxlength="254" required></div>
+          <div class="form-row"><label for="expertCountry">Country</label><input id="expertCountry" name="country" type="text" placeholder="Denmark" autocomplete="country-name" maxlength="120" required></div>
+          <div class="form-row"><label for="expertDomain">Your field</label>
+            <select id="expertDomain" name="domain_needed" required><option value="">Select your domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
           </div>
-          <div class="form-row"><label>Highest qualification</label>
-            <select><option value="">Select level</option><option>Bachelor's degree</option><option>Master's degree</option><option>PhD</option><option>Professional certification</option></select>
+          <div class="form-row"><label for="expertQualification">Highest qualification</label>
+            <select id="expertQualification" name="qualification" required><option value="">Select level</option><option>Bachelor's degree</option><option>Master's degree</option><option>PhD</option><option>Professional certification</option></select>
           </div>
-          <div class="form-row"><label>Expected hourly rate (€)</label><input type="text" placeholder="e.g. 45"></div>
+          <div class="form-row"><label for="expertRate">Expected hourly rate (€)</label><input id="expertRate" name="expected_hourly_rate" type="text" placeholder="e.g. 75" inputmode="decimal" maxlength="80"></div>
           <button type="submit" class="submit-btn">Apply to join</button>
-          <div class="success" id="expertSuccess">✓ Application received. We'll be in touch soon.</div>
+          <div class="form-message success" role="status" aria-live="polite">Application received. We will contact you when your profile matches live work.</div>
+          <div class="form-message error" role="alert" aria-live="assertive"></div>
+          <p class="privacy-note">We use these details only to assess your fit for relevant expert work and contact you about matching opportunities.</p>
         </form>
       </div>
-    </div>
+    </div>    </div>
   </div>
 </div>
 
@@ -263,8 +325,56 @@ footer p{font-size:0.75rem;color:var(--mid)}
 </footer>
 
 <script>
-document.getElementById('clientForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('clientSuccess').style.display='block';this.reset()});
-document.getElementById('expertForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('expertSuccess').style.display='block';this.reset()});
+const FORM_ENDPOINT='https://cuzdcusrdrlcaufqlucz.supabase.co/rest/v1/rpc/submit_website_inquiry';
+const FORM_API_KEY='sb_publishable_Kd3RMVPpB-Ch46M9M14HQg_jbghJZ4S';
+
+document.querySelectorAll('form[data-inquiry-type]').forEach(function(form){
+  form.dataset.startedAt=new Date().toISOString();
+
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();
+    const button=form.querySelector('.submit-btn');
+    const success=form.querySelector('.form-message.success');
+    const error=form.querySelector('.form-message.error');
+    success.style.display='none';
+    error.style.display='none';
+    button.disabled=true;
+    const originalLabel=button.textContent;
+    button.textContent='Sending…';
+
+    const values=Object.fromEntries(new FormData(form).entries());
+    const payload={
+      ...values,
+      inquiry_type:form.dataset.inquiryType,
+      form_started_at:form.dataset.startedAt
+    };
+
+    try{
+      const response=await fetch(FORM_ENDPOINT,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'apikey':FORM_API_KEY
+        },
+        body:JSON.stringify({p_payload:payload})
+      });
+
+      if(!response.ok){
+        throw new Error('We could not submit the form. Please try again.');
+      }
+
+      form.reset();
+      form.dataset.startedAt=new Date().toISOString();
+      success.style.display='block';
+    }catch(submitError){
+      error.textContent=submitError.message;
+      error.style.display='block';
+    }finally{
+      button.disabled=false;
+      button.textContent=originalLabel;
+    }
+  });
+});
 </script>
 </body>
 </html>
