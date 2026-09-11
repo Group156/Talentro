@@ -97,6 +97,12 @@ textarea{resize:vertical;min-height:90px}
 .submit-btn:disabled{opacity:0.55;cursor:wait}
 .form-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .privacy-note{font-size:0.72rem!important;color:var(--mid);line-height:1.55;margin:1rem 0 0!important}
+.contact-backup{margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.contact-backup p{margin:0 0 0.5rem!important;font-size:0.82rem!important}
+.contact-backup a{color:var(--blue);overflow-wrap:anywhere}
+.backup-copy{margin-top:0.5rem;background:#fff;border:1px solid var(--line);border-radius:6px;padding:0.6rem 0.9rem;font:inherit;font-size:0.82rem;cursor:pointer}
+.backup-text{margin-top:0.75rem;min-height:150px;font-size:0.85rem}
+.backup-status{display:block;font-size:0.8rem;margin-top:0.5rem;color:var(--mid)}
 footer{padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);max-width:1100px;margin:0 auto}
 .footer-logo{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--ink)}
 footer p{font-size:0.75rem;color:var(--mid)}
@@ -286,9 +292,16 @@ footer p{font-size:0.75rem;color:var(--mid)}
             <select id="clientDomain" name="domain_needed" required><option value="">Select a domain</option><option>Mechanical / Aerospace Engineering</option><option>Medicine & Life Sciences</option><option>Law & Compliance</option><option>Physics & Mathematics</option><option>Chemistry & Materials</option><option>Finance & Economics</option><option>Other</option></select>
           </div>
           <div class="form-row"><label for="clientDetails">Tell us about your project</label><textarea id="clientDetails" name="project_details" placeholder="The outcome, specialist profile, volume and timeline..." maxlength="5000" required></textarea></div>
-          <button type="submit" class="submit-btn">Request a conversation</button>
+          <button type="submit" class="submit-btn" disabled>Request a conversation</button>
+          <noscript><p>Please email us directly using the link below; this form requires JavaScript.</p></noscript>
           <div class="form-message success" role="status" aria-live="polite">Received. We will contact you within one business day.</div>
           <div class="form-message error" role="alert" aria-live="assertive"></div>
+          <div class="contact-backup">
+            <p>You can also email us directly at <a href="mailto:talentrotech@gmail.com?subject=Talentro%20customer%20enquiry">talentrotech@gmail.com</a>.</p>
+            <button type="button" class="backup-copy" hidden>Copy details for email</button>
+            <span class="backup-status" role="status" aria-live="polite"></span>
+            <textarea class="backup-text" aria-label="Your enquiry details to copy into an email" readonly hidden></textarea>
+          </div>
           <p class="privacy-note">We use these details only to assess and respond to your request. <a href="/privacy.html">Privacy</a></p>
         </form>
       </div>
@@ -308,9 +321,16 @@ footer p{font-size:0.75rem;color:var(--mid)}
             <select id="expertQualification" name="qualification" required><option value="">Select level</option><option>Bachelor's degree</option><option>Master's degree</option><option>PhD</option><option>Professional certification</option></select>
           </div>
           <div class="form-row"><label for="expertRate">Expected hourly rate (€)</label><input id="expertRate" name="expected_hourly_rate" type="text" placeholder="e.g. 75" inputmode="decimal" maxlength="80"></div>
-          <button type="submit" class="submit-btn">Apply to join</button>
+          <button type="submit" class="submit-btn" disabled>Apply to join</button>
+          <noscript><p>Please email us directly using the link below; this form requires JavaScript.</p></noscript>
           <div class="form-message success" role="status" aria-live="polite">Application received. We will contact you when your profile matches live work.</div>
           <div class="form-message error" role="alert" aria-live="assertive"></div>
+          <div class="contact-backup">
+            <p>You can also email us directly at <a href="mailto:talentrotech@gmail.com?subject=Talentro%20expert%20application">talentrotech@gmail.com</a>.</p>
+            <button type="button" class="backup-copy" hidden>Copy details for email</button>
+            <span class="backup-status" role="status" aria-live="polite"></span>
+            <textarea class="backup-text" aria-label="Your application details to copy into an email" readonly hidden></textarea>
+          </div>
           <p class="privacy-note">We use these details only to assess your fit for relevant expert work and contact you about matching opportunities. <a href="/privacy.html">Privacy</a></p>
         </form>
       </div>
@@ -327,15 +347,43 @@ footer p{font-size:0.75rem;color:var(--mid)}
 <script>
 const FORM_ENDPOINT='https://cuzdcusrdrlcaufqlucz.supabase.co/rest/v1/rpc/submit_website_inquiry';
 const FORM_API_KEY='sb_publishable_Kd3RMVPpB-Ch46M9M14HQg_jbghJZ4S';
+const FORM_TIMEOUT_MS=15000;
+const FORM_FAILURE_MESSAGE='We could not confirm receipt. Your details are still in this form. Please copy them using the button below and email talentrotech@gmail.com, mentioning that the form did not confirm receipt.';
 
 document.querySelectorAll('form[data-inquiry-type]').forEach(function(form){
   form.dataset.startedAt=new Date().toISOString();
+  const copyButton=form.querySelector('.backup-copy');
+  const backupStatus=form.querySelector('.backup-status');
+  const backupText=form.querySelector('.backup-text');
+  copyButton.hidden=false;
+  const fieldLabels={full_name:'Name',email:'Email',company_name:'Company',country:'Country',domain_needed:'Field',qualification:'Qualification',expected_hourly_rate:'Expected hourly rate (EUR)',project_details:'Project details'};
+  copyButton.addEventListener('click',async function(){
+    const values=Object.fromEntries(new FormData(form).entries());
+    const lines=[form.dataset.inquiryType==='client'?'Talentro customer enquiry':'Talentro expert application',''];
+    Object.entries(fieldLabels).forEach(function(entry){
+      if(values[entry[0]]) lines.push(entry[1]+': '+values[entry[0]]);
+    });
+    const text=lines.join('\n');
+    try{
+      if(!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(text);
+      backupText.hidden=true;
+      backupStatus.textContent='Copied. Open the email link above, paste your details and send.';
+    }catch(copyError){
+      backupText.value=text;
+      backupText.hidden=false;
+      backupText.focus();
+      backupText.select();
+      backupStatus.textContent='Copy the text below and paste it into your email.';
+    }
+  });
 
   form.addEventListener('submit',async function(event){
     event.preventDefault();
     const button=form.querySelector('.submit-btn');
     const success=form.querySelector('.form-message.success');
     const error=form.querySelector('.form-message.error');
+    if(button.disabled) return;
     success.style.display='none';
     error.style.display='none';
     button.disabled=true;
@@ -349,9 +397,13 @@ document.querySelectorAll('form[data-inquiry-type]').forEach(function(form){
       form_started_at:form.dataset.startedAt
     };
 
+    let timer;
     try{
+      const controller=new AbortController();
+      timer=setTimeout(function(){controller.abort();},FORM_TIMEOUT_MS);
       const response=await fetch(FORM_ENDPOINT,{
         method:'POST',
+        signal:controller.signal,
         headers:{
           'Content-Type':'application/json',
           'apikey':FORM_API_KEY
@@ -360,20 +412,29 @@ document.querySelectorAll('form[data-inquiry-type]').forEach(function(form){
       });
 
       if(!response.ok){
-        throw new Error('We could not submit the form. Please try again.');
+        throw new Error('Submission not confirmed');
+      }
+      const submissionId=await response.json();
+      if(typeof submissionId!=='string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(submissionId)){
+        throw new Error('Submission not confirmed');
       }
 
       form.reset();
+      backupText.value='';
+      backupText.hidden=true;
+      backupStatus.textContent='';
       form.dataset.startedAt=new Date().toISOString();
       success.style.display='block';
     }catch(submitError){
-      error.textContent=submitError.message;
+      error.textContent=FORM_FAILURE_MESSAGE;
       error.style.display='block';
     }finally{
+      clearTimeout(timer);
       button.disabled=false;
       button.textContent=originalLabel;
     }
   });
+  form.querySelector('.submit-btn').disabled=false;
 });
 </script>
 </body>
