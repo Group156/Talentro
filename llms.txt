@@ -1,0 +1,11 @@
+# Talentro
+
+> Talentro sources, screens and coordinates European specialists for defined AI, clinical research, regulatory and engineering projects.
+
+## Pages
+- [Services and project enquiries](https://www.talentro.tech/): Describe expertise, scope, location, language and timeline.
+- [Blog](https://blog.talentro.tech/): Articles on specialist expertise and project planning.
+- [Privacy](https://www.talentro.tech/privacy.html): Information about enquiry data.
+
+## Contact
+Email: talentrotech@gmail.com
